@@ -10,4 +10,8 @@ pub fn buildMain(allocator: *zl.build.Allocator, toplevel: *Node) void {
         "src/main.zig",
     );
     node.descr = "Main binary";
+    node.addConfig(allocator, .{
+        .name = "case",
+        .value = .{ .String = "stack_overflow" },
+    });
 }
