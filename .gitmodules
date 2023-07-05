@@ -1,0 +1,3 @@
+[submodule "zig_lib"]
+	path = zig_lib
+	url = https://github.com/amp-59/zig_lib
