@@ -1,16 +1,15 @@
-## Setup
-
-### Sample project
+# Configurable Stack Traces
 This project shows two ways to use configurable stack traces:
 * Independent root source file `free_main.zig` compiled without using build system.
 * Build root with source directory and root source file `src/main.zig`, compiled using build system, defined by `build.zig`.
 
+## Setup
 The following script will clone the repository and demonstrate both forms of usage:
 ```sh
 git clone --recursive "https://github.com/amp-59/user_stack_traces" user_stack_traces;
 cd user_stack_traces;
-zig build --build-runner zig_lib/build_runner.zig run main;
 zig run free_main.zig;
+zig build --build-runner zig_lib/build_runner.zig run main;
 ```
 
 ## Optimisation
