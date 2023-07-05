@@ -201,9 +201,7 @@ fn causeStackOverflow() void {
     causeStackOverflow();
     unreachable;
 }
-
 ```
-## Complete structure:
 ```zig
 pub const Trace = struct {
     /// Show trace on alarm.
