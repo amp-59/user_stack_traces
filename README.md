@@ -153,11 +153,6 @@ pub const trace: zl.builtin.Trace = .{
         },
     },
 };
-fn causeAssertionFailed() void {
-    var x: u64 = 0x10000;
-    var y: u64 = 0x10010;
-    zl.builtin.assertEqual(u64, x, y);
-}
 pub fn main() void {
     causeAssertionFailed();
 }
@@ -199,6 +194,11 @@ fn causeStackOverflow() void {
     a[0] = 'a';
     causeStackOverflow();
     unreachable;
+}
+fn causeAssertionFailed() void {
+    var x: u64 = 0x10000;
+    var y: u64 = 0x10010;
+    zl.builtin.assertEqual(u64, x, y);
 }
 ```
 ```zig
