@@ -16,6 +16,10 @@ zig build --build-runner zig_lib/build_runner.zig run main;
 
 ### Switching build runner
 
+Using my library's build runner will allow significantly faster compile times for these reasons:
+* Build programs (`build.zig`) using the standard library build runner require at least 4 seconds to recompile per edit. My build runner recompiles in 0.3 seconds per edit.
+* Programs that require Zig stack traces (usually those with debugging symbols and build mode `Debug`) must have a panic message formatter, DWARF parser, and stack trace formatter in order to display the abort/error message. Using the standard library builder, these components will be recompiled every time the root source file or any dependency is modified. My builder compiles these components once per project, and the output object file is statically linked with all stack-trace-enabled binaries.
+
 ```sh
 ./zig_lib/support/switch_build_runner.sh;
 ```
