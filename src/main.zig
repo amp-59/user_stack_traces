@@ -1,5 +1,6 @@
 const decls = @cImport({});
-pub usingnamespace @field(@This(), if (@hasDecl(decls, "case")) decls.case else "stack_overflow");
+
+pub usingnamespace @field(@This(), @import("root").case);
 
 const zl = @import("../zig_lib/zig_lib.zig");
 pub usingnamespace zl.proc.start;
