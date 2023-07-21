@@ -1,8 +1,6 @@
-const decls = @cImport({});
-pub usingnamespace @field(@This(), if (@hasDecl(decls, "case")) decls.case else "stack_overflow");
-
 const zl = @import("./zig_lib/zig_lib.zig");
-pub usingnamespace zl.proc.start;
+
+pub usingnamespace zl.start;
 
 const access_inactive: type = struct {
     pub const trace: zl.builtin.Trace = .{
@@ -113,23 +111,21 @@ const assertion_failed: type = struct {
         causeAssertionFailed();
     }
 };
-const stack_overflow: type = struct {
-    pub const trace: zl.builtin.Trace = .{
-        .options = .{
-            .show_line_no = true,
-            .context_line_count = 1,
-            .break_line_count = 1,
-            .write_caret = false,
-            .tokens = zl.builtin.my_trace.options.tokens,
-        },
-    };
-    fn causeStackOverflow() void {
-        var a: [4096]u8 = undefined;
-        a[0] = 'a';
-        causeStackOverflow();
-        unreachable;
-    }
-    pub fn main() void {
-        causeStackOverflow();
-    }
+pub const trace: zl.builtin.Trace = .{
+    .options = .{
+        .show_line_no = true,
+        .context_line_count = 1,
+        .break_line_count = 1,
+        .write_caret = false,
+        .tokens = zl.builtin.my_trace.options.tokens,
+    },
 };
+fn causeStackOverflow() void {
+    var a: [4096]u8 = undefined;
+    a[0] = 'a';
+    causeStackOverflow();
+    unreachable;
+}
+pub fn main() void {
+    causeStackOverflow();
+}
