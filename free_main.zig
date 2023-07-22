@@ -3,7 +3,7 @@ const zl = @import("./zig_lib/zig_lib.zig");
 pub usingnamespace zl.start;
 
 const access_inactive: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{ .show_line_no = false },
     };
     fn accessInactiveUnionField() void {
@@ -19,7 +19,7 @@ const access_inactive: type = struct {
 };
 
 const start_gt_end: type = struct {
-    pub const trace: zl.builtin.Trace = .{};
+    pub const trace: zl.debug.Trace = .{};
     fn startGreaterThanEnd() void {
         var a: [4096]u8 = undefined;
         const b: [:0]u8 = a[@intFromPtr(&a)..512 :0];
@@ -31,7 +31,7 @@ const start_gt_end: type = struct {
 };
 
 const reach_unreachable: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{
             .show_line_no = true,
             .show_pc_addr = true,
@@ -45,7 +45,7 @@ const reach_unreachable: type = struct {
     }
 };
 const reach_unreachable2: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{
             .show_line_no = true,
             .show_pc_addr = true,
@@ -57,7 +57,7 @@ const reach_unreachable2: type = struct {
     }
 };
 const out_of_bounds: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{
             .show_line_no = true,
             .write_caret = false,
@@ -74,7 +74,7 @@ const out_of_bounds: type = struct {
     }
 };
 const sentinel_mismatch: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{
             .show_line_no = true,
             .write_caret = false,
@@ -91,7 +91,7 @@ const sentinel_mismatch: type = struct {
     }
 };
 const assertion_failed: type = struct {
-    pub const trace: zl.builtin.Trace = .{
+    pub const trace: zl.debug.Trace = .{
         .options = .{
             .show_line_no = true,
             .write_caret = true,
@@ -111,7 +111,7 @@ const assertion_failed: type = struct {
         causeAssertionFailed();
     }
 };
-pub const trace: zl.builtin.Trace = .{
+pub const trace: zl.debug.Trace = .{
     .options = .{
         .show_line_no = true,
         .context_line_count = 1,
