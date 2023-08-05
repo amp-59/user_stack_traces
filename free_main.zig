@@ -2,6 +2,8 @@ const zl = @import("./zig_lib/zig_lib.zig");
 
 pub usingnamespace zl.start;
 
+pub const want_stack_traces: bool = true;
+
 const access_inactive: type = struct {
     pub const trace: zl.debug.Trace = .{
         .options = .{ .show_line_no = false },
